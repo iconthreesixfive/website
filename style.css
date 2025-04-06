@@ -1,0 +1,62 @@
+body {
+   
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    width: 100%;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+main {
+    padding: 1em;
+    width: 80%; /* Adjust the width as needed */
+    text-align: center;
+}
+
+section {
+    margin: 2em 0;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
