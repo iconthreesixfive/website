@@ -1,0 +1,47 @@
+// General Swiper initialization
+const swiper = new Swiper('.swiper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+});
+
+// Hero banner swiper
+new Swiper('.hero-swiper', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  autoplay: {
+    delay: 4000,
+  },
+});
+
+// Product carousels
+const productSwipers = document.querySelectorAll('.product-swiper');
+productSwipers.forEach(swiperEl => {
+  new Swiper(swiperEl, {
+    slidesPerView: 1.2,
+    spaceBetween: 15,
+    navigation: {
+      nextEl: swiperEl.querySelector('.swiper-button-next'),
+      prevEl: swiperEl.querySelector('.swiper-button-prev'),
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2.5,
+      },
+      1024: {
+        slidesPerView: 4,
+      },
+    },
+  });
+});

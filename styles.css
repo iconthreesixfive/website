@@ -1,62 +1,129 @@
+/* General Styles */
 body {
-   
-    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  color: #111;
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 1em;
-    text-align: center;
-    width: 100%;
+/* Header Section */
+.navbar {
+  display: flex;
+  justify-content: center; /* Centers the logo horizontally */
+  align-items: center; /* Centers the content vertically */
+  background-color: #333;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%; /* Ensures the navbar spans the full width of the page */
+  z-index: 1000;
+  background-image: url('images/RWB.png'); /* Sets the new background image */
+  background-size: cover; /* Ensures the image covers the entire navbar */
+  background-position: center; /* Centers the image */
+  height: 80px; /* Adjust the height of the navbar */
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-    width: 100%;
-    text-align: center;
+.navbar .logo {
+  color: #000; /* Changes the text color to black */
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  position: absolute; /* Allows the logo to stay centered */
+  left: 50%; /* Centers the logo horizontally */
+  transform: translateX(-50%); /* Adjusts for the logo's width */
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 10px;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  position: absolute; /* Keeps the nav-links positioned */
+  right: 20px; /* Aligns the nav-links to the right */
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 14px 20px;
-    display: inline-block;
+.nav-links li {
+  position: relative;
 }
 
-nav ul li a:hover {
-    background-color: #111;
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
 }
 
-main {
-    padding: 1em;
-    width: 80%; /* Adjust the width as needed */
-    text-align: center;
+.nav-links .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 5px;
 }
 
-section {
-    margin: 2em 0;
+.nav-links .dropdown:hover .dropdown-menu {
+  display: block;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
+.dropdown-menu li a {
+  color: #fff;
+  padding: 5px 15px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #555;
+}
+
+/* Hero Swiper */
+.hero-swiper {
+  width: 100%;
+  height: 80vh;
+}
+
+.hero-slide {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 30px 20px 10px;
+}
+
+/* Product Swiper */
+.product-swiper {
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px; /* Set a maximum width for the carousel */
+  margin: 0 auto; /* Center the carousel horizontally */
+}
+
+.product-card {
+  text-align: center;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  height: 180px;
+}
+
+/* Additional Styles for Images */
+.images-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
