@@ -45,3 +45,14 @@ productSwipers.forEach(swiperEl => {
     },
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('hamburger-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', function() {
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !expanded);
+    navLinks.classList.toggle('active');
+  });
+});
