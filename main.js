@@ -46,15 +46,46 @@ productSwipers.forEach(swiperEl => {
   });
 });
 
+// Responsive Navigation
 document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.getElementById('hamburger-menu');
-  const navLinks = document.getElementById('nav-links');
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function() {
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
     });
   }
+
+  // Mobile dropdown toggles
+  const mobileGearButton = document.getElementById('mobile-gear-button');
+  const mobileGearMenu = document.getElementById('mobile-gear-menu');
+  const mobileAccessoriesButton = document.getElementById('mobile-accessories-button');
+  const mobileAccessoriesMenu = document.getElementById('mobile-accessories-menu');
+
+  // Gear dropdown
+  if (mobileGearButton && mobileGearMenu) {
+    mobileGearButton.addEventListener('click', function() {
+      mobileGearMenu.classList.toggle('hidden');
+      const svg = mobileGearButton.querySelector('svg');
+      svg.classList.toggle('rotate-180');
+    });
+  }
+
+  // Accessories dropdown
+  if (mobileAccessoriesButton && mobileAccessoriesMenu) {
+    mobileAccessoriesButton.addEventListener('click', function() {
+      mobileAccessoriesMenu.classList.toggle('hidden');
+      const svg = mobileAccessoriesButton.querySelector('svg');
+      svg.classList.toggle('rotate-180');
+    });
+  }
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+      mobileMenu.classList.add('hidden');
+    }
+  });
 });

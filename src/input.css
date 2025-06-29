@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component styles */
+@layer components {
+  .navbar {
+    @apply flex justify-center items-center bg-icon-gray px-5 py-2.5 fixed top-0 w-full z-50 bg-rwb bg-cover bg-center h-20;
+  }
+  
+  .logo {
+    @apply text-black text-2xl font-bold uppercase text-center absolute left-1/2 transform -translate-x-1/2;
+  }
+  
+  .nav-links {
+    @apply list-none flex gap-5 absolute right-5;
+  }
+  
+  .nav-links a {
+    @apply no-underline text-white text-base;
+  }
+  
+  .dropdown-menu {
+    @apply hidden absolute top-full left-0 bg-gray-700 list-none py-2.5 rounded;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    @apply block;
+  }
+  
+  .dropdown-menu li a {
+    @apply text-white py-1.5 px-4 block no-underline;
+  }
+  
+  .dropdown-menu li a:hover {
+    @apply bg-gray-600;
+  }
+  
+  .hero-swiper {
+    @apply w-full h-80vh;
+  }
+  
+  .hero-slide {
+    @apply bg-cover bg-center w-full h-full;
+  }
+  
+  .section-title {
+    @apply text-2xl font-bold my-8 mx-5;
+  }
+  
+  .product-swiper {
+    @apply p-5 w-full max-w-6xl mx-auto;
+  }
+  
+  .product-card {
+    @apply text-center bg-icon-light-gray p-2.5 rounded-lg;
+  }
+  
+  .product-card img {
+    @apply w-full rounded-lg object-cover h-45;
+  }
+  
+  .hamburger {
+    @apply hidden flex-col cursor-pointer bg-transparent border-none p-2.5 z-50;
+  }
+  
+  .hamburger span {
+    @apply w-6 h-0.5 bg-white my-1 rounded block;
+  }
+}
+
+/* Responsive styles */
+@layer utilities {
+  .h-80vh {
+    height: 80vh;
+  }
+  
+  .h-45 {
+    height: 180px;
+  }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .hamburger {
+    @apply flex absolute top-5 right-5;
+  }
+  
+  .nav-links {
+    @apply hidden flex-col bg-black/95 absolute top-20 right-0 w-50 py-5 rounded-bl-lg z-50 shadow-lg;
+  }
+  
+  .nav-links.active {
+    @apply flex;
+  }
+  
+  .navbar {
+    @apply relative h-20 py-2.5;
+  }
+  
+  .nav-links li {
+    @apply my-2.5 text-right pr-5;
+  }
+  
+  .nav-links .dropdown-menu {
+    @apply static bg-icon-gray shadow-none rounded-none pl-5;
+  }
+}
+
+@media (min-width: 769px) {
+  .hamburger {
+    @apply hidden !important;
+  }
+} 

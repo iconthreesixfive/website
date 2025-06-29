@@ -1,0 +1,12 @@
+{
+  "name": "icon365-website",
+  "version": "1.0.0",
+  "description": "ICON365 website with Tailwind CSS",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
+    "build-prod": "tailwindcss -i ./src/input.css -o ./styles.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+} 

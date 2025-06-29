@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us - ICON365</title>
+  <title>Shopping Cart - ICON365</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -21,23 +21,13 @@
     }
   </script>
   <style>
-    /* Override old hamburger styles that might interfere */
-    .hamburger {
-      display: none !important;
-    }
-    
-    /* Ensure new mobile menu button is always visible on mobile */
+    /* Ensure mobile menu button is always visible */
     @media (max-width: 768px) {
       #mobile-menu-button {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
       }
-    }
-    
-    /* Override any old navbar styles */
-    .navbar {
-      position: static !important;
     }
     
     /* Ensure mobile menu has proper z-index */
@@ -114,15 +104,6 @@
           </div>
         </div>
 
-        <!-- Mobile menu button -->
-        <div class="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2">
-          <button id="mobile-menu-button" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-
         <!-- Shopping Bag Button - Desktop -->
         <div class="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
           <a href="shopping-cart.html" class="shopping-cart-button text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200 relative">
@@ -132,6 +113,15 @@
             <!-- Shopping cart badge -->
             <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">0</span>
           </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2">
+          <button id="mobile-menu-button" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
 
         <!-- Shopping Bag Button - Mobile -->
@@ -184,52 +174,195 @@
     </nav>
   </header>
 
-  <main class="mt-30 max-w-lg mx-auto p-5">
-    <h1 class="text-center text-3xl font-playfair font-bold mb-6">Contact Us</h1>
-    <form class="flex flex-col gap-4 font-inter">
-      <label for="name" class="font-medium">Name</label>
-      <input type="text" id="name" name="name" required class="p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon-gray focus:border-transparent font-inter">
-      <label for="email" class="font-medium">Email</label>
-      <input type="email" id="email" name="email" required class="p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon-gray focus:border-transparent font-inter">
-      <label for="message" class="font-medium">Message</label>
-      <textarea id="message" name="message" rows="5" required class="p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon-gray focus:border-transparent resize-vertical font-inter"></textarea>
-      <button type="submit" class="bg-icon-gray text-white border-none rounded py-2.5 text-base cursor-pointer hover:bg-gray-700 transition-colors duration-200 font-inter font-semibold">Send Message</button>
-    </form>
-    <div class="text-center mt-5">
-      <a href="index.html" class="text-icon-gray underline hover:text-gray-700 transition-colors duration-200 font-inter">&larr; Back to Home</a>
+  <!-- Shopping Cart Section -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-playfair font-bold text-center mb-8 text-gray-800">Shopping Cart</h1>
+    
+    <!-- Empty Cart State -->
+    <div id="empty-cart" class="text-center py-12 hidden">
+      <svg class="mx-auto h-24 w-24 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+      </svg>
+      <h2 class="text-xl font-semibold text-gray-600 mb-2">Your cart is empty</h2>
+      <p class="text-gray-500 mb-6">Looks like you haven't added any items to your cart yet.</p>
+      <a href="index.html" class="inline-flex items-center px-6 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-200">
+        Continue Shopping
+        <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Cart Items -->
+    <div id="cart-items" class="space-y-4">
+      <!-- Cart items will be dynamically inserted here -->
+    </div>
+
+    <!-- Cart Summary -->
+    <div id="cart-summary" class="border-t border-gray-200 pt-6 mt-6 hidden">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-lg font-semibold">Subtotal:</span>
+        <span id="subtotal" class="text-lg font-semibold">$0.00</span>
+      </div>
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-gray-600">Shipping:</span>
+        <span class="text-gray-600">$5.99</span>
+      </div>
+      <div class="flex justify-between items-center mb-6 text-lg font-bold">
+        <span>Total:</span>
+        <span id="total">$0.00</span>
+      </div>
+      <button class="w-full bg-gray-800 text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-200 font-semibold">
+        Proceed to Checkout
+      </button>
     </div>
   </main>
+
   <script src="main.js"></script>
+  
+  <!-- Mobile Menu JavaScript -->
   <script>
-    // Debug script to check if mobile menu is working
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
-      
-      console.log('Mobile menu button found:', mobileMenuButton);
-      console.log('Mobile menu found:', mobileMenu);
-      
-      if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', function(e) {
-          console.log('Hamburger button clicked!');
-          e.preventDefault();
-          e.stopPropagation();
-          
-          if (mobileMenu) {
-            console.log('Toggling mobile menu');
-            mobileMenu.classList.toggle('hidden');
-            console.log('Mobile menu hidden:', mobileMenu.classList.contains('hidden'));
-          }
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
         });
       }
-      
-      // Update cart badge count
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Mobile dropdown toggles
+      const mobileGearButton = document.getElementById('mobile-gear-button');
+      const mobileGearMenu = document.getElementById('mobile-gear-menu');
+      const mobileAccessoriesButton = document.getElementById('mobile-accessories-button');
+      const mobileAccessoriesMenu = document.getElementById('mobile-accessories-menu');
+
+      // Gear dropdown
+      if (mobileGearButton && mobileGearMenu) {
+        mobileGearButton.addEventListener('click', function() {
+          mobileGearMenu.classList.toggle('hidden');
+          const svg = mobileGearButton.querySelector('svg');
+          svg.classList.toggle('rotate-180');
+        });
+      }
+
+      // Accessories dropdown
+      if (mobileAccessoriesButton && mobileAccessoriesMenu) {
+        mobileAccessoriesButton.addEventListener('click', function() {
+          mobileAccessoriesMenu.classList.toggle('hidden');
+          const svg = mobileAccessoriesButton.querySelector('svg');
+          svg.classList.toggle('rotate-180');
+        });
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+  
+  <!-- Shopping Cart JavaScript -->
+  <script>
+    // Initialize cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Update cart badge count
+    function updateCartBadge() {
       const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
       const badges = document.querySelectorAll('.absolute.-top-2.-right-2');
       badges.forEach(badge => {
         badge.textContent = totalItems;
       });
+    }
+    
+    // Display cart items
+    function displayCart() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const emptyCartDiv = document.getElementById('empty-cart');
+      const cartSummaryDiv = document.getElementById('cart-summary');
+      
+      if (cart.length === 0) {
+        // Show empty cart
+        emptyCartDiv.classList.remove('hidden');
+        cartSummaryDiv.classList.add('hidden');
+        cartItemsContainer.innerHTML = '';
+      } else {
+        // Hide empty cart and show items
+        emptyCartDiv.classList.add('hidden');
+        cartSummaryDiv.classList.remove('hidden');
+        
+        // Generate cart items HTML
+        cartItemsContainer.innerHTML = cart.map((item, index) => `
+          <div class="border border-gray-200 rounded-lg p-4" data-item-index="${index}">
+            <div class="flex items-center">
+              <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+              <div class="ml-4 flex-1">
+                <h3 class="font-semibold text-gray-800">${item.name}</h3>
+                <p class="text-gray-600 text-sm">Price: $${item.price.toFixed(2)} | Size: ${item.size || 'N/A'}</p>
+                <div class="flex items-center mt-2">
+                  <button class="quantity-btn text-gray-500 hover:text-gray-700 text-xl font-bold" onclick="updateQuantity(${index}, -1)">-</button>
+                  <span class="mx-4 font-semibold">${item.quantity}</span>
+                  <button class="quantity-btn text-gray-500 hover:text-gray-700 text-xl font-bold" onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="font-semibold text-gray-800">$${(item.price * item.quantity).toFixed(2)}</p>
+                <button class="text-red-500 hover:text-red-700 text-sm mt-1" onclick="removeItem(${index})">Remove</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        
+        updateCartSummary();
+      }
+    }
+    
+    // Update item quantity
+    function updateQuantity(index, change) {
+      if (cart[index]) {
+        cart[index].quantity += change;
+        
+        if (cart[index].quantity <= 0) {
+          // Remove item if quantity is 0 or less
+          cart.splice(index, 1);
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Update display
+        displayCart();
+        updateCartBadge();
+      }
+    }
+    
+    // Remove item from cart
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      displayCart();
+      updateCartBadge();
+    }
+    
+    // Update cart summary (subtotal and total)
+    function updateCartSummary() {
+      const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+      const shipping = 5.99;
+      const total = subtotal + shipping;
+      
+      document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    }
+    
+    // Initialize cart display when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      displayCart();
+      updateCartBadge();
     });
   </script>
 </body>

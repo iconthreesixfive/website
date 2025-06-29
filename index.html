@@ -4,36 +4,218 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ICON365</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'playfair': ['Playfair Display', 'serif'],
+            'inter': ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Size selection styles */
+    .size-radio:checked + .size-option {
+      background-color: #1f2937;
+      color: white;
+      border-color: #1f2937;
+    }
+    
+    .size-option {
+      transition: all 0.2s ease;
+    }
+    
+    .size-option:hover {
+      background-color: #f3f4f6;
+    }
+    
+    /* Button states */
+    .add-to-cart-btn:disabled {
+      background-color: #9ca3af;
+      cursor: not-allowed;
+    }
+    
+    .add-to-cart-btn:not(:disabled) {
+      background-color: #1f2937;
+      cursor: pointer;
+    }
+    
+    .add-to-cart-btn:not(:disabled):hover {
+      background-color: #374151;
+    }
+    
+    /* Mobile sticky header */
+    @media (max-width: 768px) {
+      header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+      }
+      
+      /* Add padding to body to account for fixed header */
+      body {
+        padding-top: 64px !important; /* 64px = h-16 (header height) */
+      }
+      
+      /* Ensure mobile menu appears below fixed header */
+      #mobile-menu {
+        top: 64px !important;
+      }
+    }
+    
+    /* Desktop sticky header */
+    @media (min-width: 769px) {
+      header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+      }
+      
+      /* Add padding to body to account for fixed header */
+      body {
+        padding-top: 64px !important; /* 64px = h-16 (header height) */
+      }
+      
+      /* Ensure dropdown menus appear below fixed header */
+      .group:hover .absolute {
+        top: 80px !important;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="m-0 font-sans bg-white text-icon-black max-w-full overflow-x-hidden">
   <!-- Header Section -->
-  <header class="site-header" style="background-image: url('images/RWB.png'); background-size: cover; background-position: center;">
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-      <div class="logo">ICON 365</div>
-      <button class="hamburger" id="hamburger-menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a href="#" aria-haspopup="true" aria-expanded="false">Gear</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Men</a></li>
-            <li><a href="#">Women</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" aria-haspopup="true" aria-expanded="false">Accessories</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Sneakers</a></li>
-          </ul>
-        </li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
+  <header class="bg-cover bg-center bg-no-repeat shadow-lg relative" style="background-image: url('images/RWB.png');">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo - Centered -->
+        <div class="absolute left-1/2 transform -translate-x-1/2">
+          <div class="font-playfair text-2xl font-bold text-black">ICON 365</div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:block absolute right-24 top-1/2 transform -translate-y-1/2">
+          <div class="flex items-baseline space-x-4">
+            <a href="#" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Home</a>
+            
+            <!-- Gear Dropdown -->
+            <div class="relative group">
+              <button class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
+                Gear
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="fixed mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style="right: 20px; top: 80px;">
+                <div class="py-1" role="menu">
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200" role="menuitem">Men</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200" role="menuitem">Women</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accessories Dropdown -->
+            <div class="relative group">
+              <button class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
+                Accessories
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="fixed mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style="right: 20px; top: 80px;">
+                <div class="py-1" role="menu">
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200" role="menuitem">Sneakers</a>
+                </div>
+              </div>
+            </div>
+
+            <a href="contact.html" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Contact Us</a>
+          </div>
+        </div>
+
+        <!-- Shopping Bag Button - Desktop -->
+        <div class="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2">
+          <a href="shopping-cart.html" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200 relative">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+            <!-- Shopping cart badge -->
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">0</span>
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2">
+          <button id="mobile-menu-button" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Shopping Bag Button - Mobile -->
+        <div class="md:hidden absolute right-16 top-1/2 transform -translate-y-1/2">
+          <a href="shopping-cart.html" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200 relative">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+            <!-- Shopping cart badge -->
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">0</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="md:hidden hidden absolute top-16 right-0 w-64 bg-black bg-opacity-95 rounded-bl-lg shadow-xl z-50">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="#" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Home</a>
+          
+          <!-- Mobile Gear Dropdown -->
+          <div class="relative">
+            <button id="mobile-gear-button" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left flex items-center justify-between">
+              Gear
+              <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="mobile-gear-menu" class="hidden pl-4 space-y-1">
+              <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Men</a>
+              <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Women</a>
+            </div>
+          </div>
+
+          <!-- Mobile Accessories Dropdown -->
+          <div class="relative">
+            <button id="mobile-accessories-button" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left flex items-center justify-between">
+              Accessories
+              <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="mobile-accessories-menu" class="hidden pl-4 space-y-1">
+              <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Sneakers</a>
+            </div>
+          </div>
+
+          <a href="contact.html" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Contact Us</a>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -47,35 +229,255 @@
     <div class="swiper-pagination"></div>
   </div>
 
-  <!-- Featured Carousel -->
-  <section class="section-title">NEW DROPS</section>
-  <div class="swiper product-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide product-card">
-        <img src="images/shirt_1.png" alt="Shirt 1">
-        <p>Drop 1</p>
+  <!-- Featured Products Section -->
+  <section class="px-4 py-12 max-w-7xl mx-auto">
+    <h2 class="text-4xl font-playfair font-bold text-center mb-8 text-gray-800 tracking-wide">NEW DROPS</h2>
+    
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Product 1 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <div class="relative">
+          <img src="images/shirt_1.png" alt="Classic Icon T-Shirt" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+          <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+            NEW
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Classic Icon T-Shirt</h3>
+          <p class="text-gray-600 text-sm mb-3">Premium cotton blend with the iconic ICON365 logo. Comfortable fit for everyday wear.</p>
+          
+          <!-- Size Selection -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select Size:</label>
+            <div class="flex space-x-3">
+              <label class="flex items-center">
+                <input type="radio" name="size-1" value="S" class="size-radio sr-only" data-product-id="1">
+                <span class="size-option px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors">S</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="size-1" value="M" class="size-radio sr-only" data-product-id="1">
+                <span class="size-option px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors">M</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="size-1" value="L" class="size-radio sr-only" data-product-id="1">
+                <span class="size-option px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors">L</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-2xl font-bold text-gray-800">$29.99</span>
+            <span class="text-sm text-gray-500 line-through">$39.99</span>
+          </div>
+          <button id="add-to-cart-1" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed" 
+                  data-product-id="1" 
+                  data-product-name="Classic Icon T-Shirt" 
+                  data-product-price="29.99" 
+                  data-product-image="images/shirt_1.png"
+                  disabled>
+            Select Size
+          </button>
+        </div>
       </div>
-      <div class="swiper-slide product-card">
-        <img src="images/shirt_2.png" alt="Shirt 2">
-        <p>Drop 2</p>
+
+      <!-- Product 2 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <div class="relative">
+          <img src="images/shirt_2.png" alt="Urban Street T-Shirt" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+          <div class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+            HOT
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Urban Street T-Shirt</h3>
+          <p class="text-gray-600 text-sm mb-3">Street-style design with bold graphics. Perfect for making a statement.</p>
+          
+          <!-- Size Selection -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select Size:</label>
+            <div class="flex space-x-3">
+              <label class="flex items-center">
+                <input type="radio" name="size-2" value="S" class="size-radio sr-only" data-product-id="2">
+                <span class="size-option px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors">S</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="size-2" value="M" class="size-radio sr-only" data-product-id="2">
+                <span class="size-option px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors">M</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="size-2" value="L" class="size-radio sr-only" data-product-id="2">
+                <span class="size-option px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors">L</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-2xl font-bold text-gray-800">$34.99</span>
+            <span class="text-sm text-gray-500 line-through">$44.99</span>
+          </div>
+          <button id="add-to-cart-2" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed"
+                  data-product-id="2" 
+                  data-product-name="Urban Street T-Shirt" 
+                  data-product-price="34.99" 
+                  data-product-image="images/shirt_2.png"
+                  disabled>
+            Select Size
+          </button>
+        </div>
       </div>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
+  </section>
 
-  <!-- Instagram and YouTube Links -->
-  <div style="text-align: center; margin-top: 20px;">
-    <a href="https://www.instagram.com/icon3.6.5/" target="_blank" style="margin-right: 10px;">
-      <img src="images/instagram.png" alt="Instagram" style="width: 50px; height: 50px;">
+  <!-- Social Media Links -->
+  <div class="flex justify-center items-center gap-4 mt-8 mb-8 flex-wrap w-full text-center">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/icon3.6.5/" target="_blank" 
+       class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transform hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+      <i class="fab fa-instagram text-xl"></i>
     </a>
-    <a href="https://www.youtube.com/@Icon3.6.5" target="_blank">
-      <img src="images/youtube.png" alt="YouTube" style="width: 50px; height: 50px;">
+    
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@Icon3.6.5" target="_blank" 
+       class="flex items-center justify-center w-12 h-12 rounded-full bg-red-600 text-white hover:bg-red-700 transform hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+      <i class="fab fa-youtube text-xl"></i>
     </a>
   </div>
 
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="main.js"></script>
+  
+  <!-- Shopping Cart JavaScript -->
+  <script>
+    // Initialize cart from localStorage or create empty cart
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Update cart badge count
+    function updateCartBadge() {
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      const badges = document.querySelectorAll('.absolute.-top-2.-right-2');
+      badges.forEach(badge => {
+        badge.textContent = totalItems;
+      });
+    }
+    
+    // Add item to cart
+    function addToCart(productId, productName, productPrice, productImage, size) {
+      // Check if item already exists in cart with the same size
+      const existingItem = cart.find(item => item.id === productId && item.size === size);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          id: productId,
+          name: productName,
+          price: parseFloat(productPrice),
+          image: productImage,
+          size: size,
+          quantity: 1
+        });
+      }
+      
+      // Save to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Update cart badge
+      updateCartBadge();
+      
+      // Show success message
+      showAddToCartMessage(productName, size);
+    }
+    
+    // Show success message when item is added
+    function showAddToCartMessage(productName, size) {
+      // Create success message
+      const message = document.createElement('div');
+      message.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full';
+      message.innerHTML = `
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          ${productName} (Size: ${size}) added to cart!
+        </div>
+      `;
+      
+      document.body.appendChild(message);
+      
+      // Animate in
+      setTimeout(() => {
+        message.classList.remove('translate-x-full');
+      }, 100);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        message.classList.add('translate-x-full');
+        setTimeout(() => {
+          document.body.removeChild(message);
+        }, 300);
+      }, 3000);
+    }
+    
+    // Handle size selection
+    function handleSizeSelection(productId) {
+      const selectedSize = document.querySelector(`input[name="size-${productId}"]:checked`);
+      const addToCartBtn = document.getElementById(`add-to-cart-${productId}`);
+      
+      if (selectedSize) {
+        // Enable button and change text
+        addToCartBtn.disabled = false;
+        addToCartBtn.textContent = 'Add to bag';
+        addToCartBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+        addToCartBtn.classList.add('add-to-cart-btn');
+      } else {
+        // Disable button and change text
+        addToCartBtn.disabled = true;
+        addToCartBtn.textContent = 'Select Size';
+        addToCartBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+        addToCartBtn.classList.remove('add-to-cart-btn');
+      }
+    }
+    
+    // Add event listeners to "Add to bag" buttons
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update cart badge on page load
+      updateCartBadge();
+      
+      // Add event listeners to all "Add to bag" buttons
+      const addToCartButtons = document.querySelectorAll('[id^="add-to-cart-"]');
+      
+      addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          if (this.disabled) return; // Don't proceed if button is disabled
+          
+          const productId = this.getAttribute('data-product-id');
+          const productName = this.getAttribute('data-product-name');
+          const productPrice = this.getAttribute('data-product-price');
+          const productImage = this.getAttribute('data-product-image');
+          
+          // Get selected size
+          const selectedSize = document.querySelector(`input[name="size-${productId}"]:checked`);
+          if (!selectedSize) {
+            alert('Please select a size first!');
+            return;
+          }
+          
+          const size = selectedSize.value;
+          addToCart(productId, productName, productPrice, productImage, size);
+        });
+      });
+      
+      // Add event listeners to size radio buttons
+      const sizeRadios = document.querySelectorAll('.size-radio');
+      sizeRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          const productId = this.getAttribute('data-product-id');
+          handleSizeSelection(productId);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
