@@ -230,16 +230,26 @@ html, body {
 /* Responsive Video Embeds */
 .video-responsive {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  padding-top: 25px;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-top: 0;         /* Remove extra top padding */
   height: 0;
+  max-width: 100%;        /* Allow full width on mobile */
+  margin: 0 auto;
 }
+
 .video-responsive iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* For desktop, you can still set a max-width */
+@media (min-width: 1024px) {
+  .video-responsive {
+    max-width: 1200px; /* or whatever you prefer for desktop */
+  }
 }
 
 /* Swiper Slide Images */
