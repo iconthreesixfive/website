@@ -1,16 +1,16 @@
-// General Swiper initialization
-const swiper = new Swiper('.swiper', {
+// main.js or in your script tag
+document.querySelectorAll('.swiper').forEach(function(swiperEl) {
+  new Swiper(swiperEl, {
     loop: true,
-    slidesPerView: 1,
-    spaceBetween: 20,
+    navigation: {
+      nextEl: swiperEl.querySelector('.swiper-button-next'),
+      prevEl: swiperEl.querySelector('.swiper-button-prev'),
+    },
     pagination: {
-      el: '.swiper-pagination',
+      el: swiperEl.querySelector('.swiper-pagination'),
       clickable: true,
     },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+  });
 });
 
 // Hero banner swiper
@@ -42,6 +42,21 @@ productSwipers.forEach(swiperEl => {
       1024: {
         slidesPerView: 4,
       },
+    },
+  });
+});
+
+// Initialize Swiper for each product image carousel
+document.querySelectorAll('.product-image-swiper').forEach(function(swiperEl) {
+  new Swiper(swiperEl, {
+    loop: true,
+    navigation: {
+      nextEl: swiperEl.querySelector('.swiper-button-next'),
+      prevEl: swiperEl.querySelector('.swiper-button-prev'),
+    },
+    pagination: {
+      el: swiperEl.querySelector('.swiper-pagination'),
+      clickable: true,
     },
   });
 });
