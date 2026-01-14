@@ -228,7 +228,12 @@
     </iframe>
   </div>
 
-  
+  <!-- Image Modal -->
+  <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+    <span id="close-modal" class="absolute top-4 right-6 text-white text-4xl cursor-pointer select-none">&times;</span>
+    <img id="modal-img" src="" alt="Enlarged product" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl border-4 border-white">
+  </div>
+
   <!-- Featured Products Section -->
   <section class="px-4 py-12 max-w-7xl mx-auto">
     <h2 class="text-4xl font-playfair font-bold text-center mb-8 text-gray-800 tracking-wide">NEW DROPS</h2>
@@ -241,16 +246,16 @@
           <div class="swiper product-image-swiper-1" style="aspect-ratio: 1 / 1;">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img src="images/shirt_1.png" alt="Classic Icon T-Shirt" class="w-full h-64 object-cover">
+                <img src="images/product_1/RBB_front.png" alt="Classic Icon T-Shirt Front" class="w-full h-64 object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/shirt_1.png" alt="Classic Icon T-Shirt" class="w-full h-64 object-cover">
+                <img src="images/product_1/RBB_right.png" alt="Classic Icon T-Shirt Right" class="w-full h-64 object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/shirt_1.png" alt="Classic Icon T-Shirt" class="w-full h-64 object-cover">
+                <img src="images/product_1/RBB_back.png" alt="Classic Icon T-Shirt Back" class="w-full h-64 object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/shirt_1.png" alt="Classic Icon T-Shirt" class="w-full h-64 object-cover">
+                <img src="images/product_1/RBB_left.png" alt="Classic Icon T-Shirt Left" class="w-full h-64 object-cover">
               </div>
             </div>
             <div class="swiper-button-next"></div>
@@ -285,13 +290,12 @@
           </div>
           
           <div class="flex justify-between items-center mb-4">
-            <span class="text-2xl font-bold text-gray-800">$29.99</span>
-            <span class="text-sm text-gray-500 line-through">$39.99</span>
+            <span class="text-2xl font-bold text-gray-800">$69.99</span>
           </div>
           <button id="add-to-cart-1" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed" 
                   data-product-id="1" 
                   data-product-name="Classic Icon T-Shirt" 
-                  data-product-price="29.99" 
+                  data-product-price="69.99" 
                   data-product-image="images/shirt_1.png"
                   disabled>
             Select Size
@@ -349,13 +353,12 @@
           </div>
           
           <div class="flex justify-between items-center mb-4">
-            <span class="text-2xl font-bold text-gray-800">$34.99</span>
-            <span class="text-sm text-gray-500 line-through">$44.99</span>
+            <span class="text-2xl font-bold text-gray-800">$69.99</span>
           </div>
           <button id="add-to-cart-2" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed"
                   data-product-id="2" 
                   data-product-name="Urban Street T-Shirt" 
-                  data-product-price="34.99" 
+                  data-product-price="69.99" 
                   data-product-image="images/shirt_2.png"
                   disabled>
             Select Size
@@ -411,13 +414,12 @@
             </div>
           </div>
           <div class="flex justify-between items-center mb-4">
-            <span class="text-2xl font-bold text-gray-800">$27.99</span>
-            <span class="text-sm text-gray-500 line-through">$34.99</span>
+            <span class="text-2xl font-bold text-gray-800">$69.99</span>
           </div>
           <button id="add-to-cart-3" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed"
                   data-product-id="3" 
                   data-product-name="Minimalist Tee" 
-                  data-product-price="27.99" 
+                  data-product-price="69.99" 
                   data-product-image="images/shirt_3.png"
                   disabled>
             Select Size
@@ -473,13 +475,12 @@
             </div>
           </div>
           <div class="flex justify-between items-center mb-4">
-            <span class="text-2xl font-bold text-gray-800">$32.99</span>
-            <span class="text-sm text-gray-500 line-through">$39.99</span>
+            <span class="text-2xl font-bold text-gray-800">$69.99</span>
           </div>
           <button id="add-to-cart-4" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed"
                   data-product-id="4" 
                   data-product-name="Bold Graphic Tee" 
-                  data-product-price="32.99" 
+                  data-product-price="69.99" 
                   data-product-image="images/shirt_4.png"
                   disabled>
             Select Size
@@ -535,13 +536,12 @@
             </div>
           </div>
           <div class="flex justify-between items-center mb-4">
-            <span class="text-2xl font-bold text-gray-800">$31.99</span>
-            <span class="text-sm text-gray-500 line-through">$37.99</span>
+            <span class="text-2xl font-bold text-gray-800">$69.99</span>
           </div>
           <button id="add-to-cart-5" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed"
                   data-product-id="5" 
                   data-product-name="Retro Vibes Tee" 
-                  data-product-price="31.99" 
+                  data-product-price="69.99" 
                   data-product-image="images/shirt_5.png"
                   disabled>
             Select Size
@@ -665,40 +665,27 @@
     
     // Add event listeners to "Add to bag" buttons
     document.addEventListener('DOMContentLoaded', function() {
-      // Update cart badge on page load
       updateCartBadge();
-      
-      // Add event listeners to all "Add to bag" buttons
-      const addToCartButtons = document.querySelectorAll('[id^="add-to-cart-"]');
-      
-      addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          if (this.disabled) return; // Don't proceed if button is disabled
-          
-          const productId = this.getAttribute('data-product-id');
-          const productName = this.getAttribute('data-product-name');
-          const productPrice = this.getAttribute('data-product-price');
-          const productImage = this.getAttribute('data-product-image');
-          
-          // Get selected size
-          const selectedSize = document.querySelector(`input[name="size-${productId}"]:checked`);
-          if (!selectedSize) {
-            alert('Please select a size first!');
-            return;
-          }
-          
-          const size = selectedSize.value;
-          addToCart(productId, productName, productPrice, productImage, size);
+
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeModal = document.getElementById('close-modal');
+
+      document.querySelectorAll('.swiper-slide img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function() {
+          modalImg.src = this.src;
+          modal.classList.remove('hidden');
         });
       });
-      
-      // Add event listeners to size radio buttons
-      const sizeRadios = document.querySelectorAll('.size-radio');
-      sizeRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-          const productId = this.getAttribute('data-product-id');
-          handleSizeSelection(productId);
-        });
+
+      closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') modal.classList.add('hidden');
       });
     });
 
