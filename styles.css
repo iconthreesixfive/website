@@ -260,3 +260,27 @@ html, body {
   aspect-ratio: 1 / 1;
   display: block;
 }
+
+/* Make Swiper arrows smaller and light grey */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 22px;
+  height: 22px;
+  color: #bbb !important;         /* Light grey arrow */
+  background: rgba(255,255,255,0.7); /* Optional: subtle background for visibility */
+  border-radius: 50%;
+  font-size: 18px !important;
+  box-shadow: none;
+  transition: background 0.2s;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px !important;     /* Make arrow icon smaller */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #e5e7eb;           /* Slightly darker on hover */
+  color: #888 !important;
+}
