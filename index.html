@@ -38,7 +38,7 @@
     .size-option:hover {
       background-color: #f3f4f6;
     }
-    
+
     /* Button states */
     .add-to-cart-btn:disabled {
       background-color: #9ca3af;
@@ -53,113 +53,81 @@
     .add-to-cart-btn:not(:disabled):hover {
       background-color: #374151;
     }
-    
-    /* Mobile sticky header */
-    @media (max-width: 768px) {
-      header {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 1000 !important;
-        width: 100% !important;
-      }
-      
-      /* Add padding to body to account for fixed header */
-      body {
-        padding-top: 64px !important; /* 64px = h-16 (header height) */
-      }
-      
-      /* Ensure mobile menu appears below fixed header */
-      #mobile-menu {
-        top: 64px !important;
-      }
+
+    /* Reusable nav link styles */
+    .nav-link {
+      @apply px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
     }
     
-    /* Desktop sticky header */
-    @media (min-width: 769px) {
-      header {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 1000 !important;
-        width: 100% !important;
-      }
-      
-      /* Add padding to body to account for fixed header */
-      body {
-        padding-top: 64px !important; /* 64px = h-16 (header height) */
-      }
-      
-      /* Ensure dropdown menus appear below fixed header */
-      .group:hover .absolute {
-        top: 80px !important;
-      }
+    .nav-link-desktop {
+      @apply text-black hover:text-gray-700;
+    }
+    
+    .nav-link-mobile {
+      @apply text-black hover:text-gray-700 block text-base;
+    }
+
+    /* Shopping cart button base styles */
+    .cart-btn {
+      @apply text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200 relative;
+    }
+
+    /* Product card styles */
+    .product-card {
+      @apply bg-white rounded-lg shadow-2xl hover:shadow-2xl overflow-hidden transition-shadow duration-300;
+    }
+
+    .product-tag {
+      @apply absolute top-2 right-2 text-white px-2 py-1 rounded-full text-xs font-semibold z-10;
+    }
+
+    .size-btn {
+      @apply px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors;
+    }
+
+    .add-to-cart-btn {
+      @apply w-full text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold;
     }
   </style>
 </head>
 <body class="m-0 font-sans bg-white text-icon-black max-w-full overflow-x-hidden">
-  <!-- Header Section -->
   <header class="bg-cover bg-center bg-no-repeat shadow-lg relative" style="background-image: url('images/RWB.png');">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <!-- Logo - Centered -->
+        <!-- Logo -->
         <div class="absolute left-1/2 transform -translate-x-1/2">
           <div class="font-playfair text-2xl font-bold text-black">ICON 365</div>
         </div>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:block absolute right-24 top-1/2 transform -translate-y-1/2">
-          <div class="flex items-baseline space-x-4">
-            <a href="#" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Home</a>
-            
-            <!-- Gear Dropdown -->
-            <div class="relative group">
-              <button class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
-                Gear
-                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-              <div class="fixed mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style="right: 20px; top: 80px;">
-                <div class="py-1" role="menu">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200" role="menuitem">Men</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200" role="menuitem">Women</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Accessories Dropdown -->
-            <div class="relative group">
-              <button class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
-                Accessories
-                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-              <div class="fixed mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style="right: 20px; top: 80px;">
-                <div class="py-1" role="menu">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200" role="menuitem">Sneakers</a>
-                </div>
-              </div>
-            </div>
-
-            <a href="contact.html" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Contact Us</a>
+          <div class="flex items-baseline space-x-4 bg-gray-100 rounded-md shadow px-2 py-1">
+            <a href="#" class="nav-link nav-link-desktop">Home</a>
+            <a href="contact.html" class="nav-link nav-link-desktop">Contact Us</a>
           </div>
         </div>
 
         <!-- Shopping Bag Button - Desktop -->
         <div class="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2">
-          <a href="shopping-cart.html" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200 relative">
+          <a href="shopping-cart.html" class="cart-btn">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
             </svg>
-            <!-- Shopping cart badge -->
-            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">0</span>
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold cart-count">0</span>
           </a>
         </div>
 
+        <!-- Mobile menu button -->
+        <div class="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2">
+          <button id="mobile-menu-button" class="cart-btn">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Shopping Bag Button - Mobile -->
+        <div class="md:hidden absolute right-16 top-1/2 transform -translate-y-1/2">
         <!-- Mobile menu button -->
         <div class="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2">
           <button id="mobile-menu-button" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200">
@@ -182,38 +150,10 @@
       </div>
 
       <!-- Mobile Navigation -->
-      <div id="mobile-menu" class="md:hidden hidden absolute top-16 right-0 w-64 bg-black bg-opacity-95 rounded-bl-lg shadow-xl z-50">
+      <div id="mobile-menu" class="md:hidden hidden absolute top-16 right-0 w-64 bg-gray-100 bg-opacity-95 rounded-bl-lg shadow-xl z-50">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="#" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Home</a>
-          
-          <!-- Mobile Gear Dropdown -->
-          <div class="relative">
-            <button id="mobile-gear-button" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left flex items-center justify-between">
-              Gear
-              <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div id="mobile-gear-menu" class="hidden pl-4 space-y-1">
-              <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Men</a>
-              <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Women</a>
-            </div>
-          </div>
-
-          <!-- Mobile Accessories Dropdown -->
-          <div class="relative">
-            <button id="mobile-accessories-button" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left flex items-center justify-between">
-              Accessories
-              <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div id="mobile-accessories-menu" class="hidden pl-4 space-y-1">
-              <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Sneakers</a>
-            </div>
-          </div>
-
-          <a href="contact.html" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Contact Us</a>
+          <a href="#" class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Home</a>
+          <a href="contact.html" class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Contact Us</a>
         </div>
       </div>
     </nav>
@@ -293,9 +233,9 @@
           </div>
           <button id="add-to-cart-1" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed" 
                   data-product-id="1" 
-                  data-product-name="Classic Icon T-Shirt" 
+                  data-product-name="Red Black and Blue Scarf Hoodie" 
                   data-product-price="69.99" 
-                  data-product-image="images/shirt_1.png"
+                  data-product-image="images/RBB_right.PNG"
                   disabled>
             Select Size
           </button>
@@ -308,28 +248,27 @@
           <div class="swiper product-image-swiper-2" style="aspect-ratio: 1 / 1;">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img src="images/RWB_right.PNG" alt="Red White Blue Scarf Hoodie Right" class="w-full h-64 object-cover">
+                <img src="images/RWB_right.PNG" alt="Red White and Blue Scarf Hoodie Right" class="w-full h-64 object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/RWB_back.PNG" alt="Red White Blue Scarf Hoodie Back" class="w-full h-64 object-cover">
+                <img src="images/RWB_back.PNG" alt="Red White and Blue Scarf Hoodie Back" class="w-full h-64 object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/RWB_left.PNG" alt="Red White Blue Scarf Hoodie Left" class="w-full h-64 object-cover">
+                <img src="images/RWB_left.PNG" alt="Red White and Blue Scarf Hoodie Left" class="w-full h-64 object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/RWB_front.PNG" alt="Red White Blue Scarf Hoodie Front" class="w-full h-64 object-cover">
+                <img src="images/RWB_front.PNG" alt="Red White and Blue Scarf Hoodie Front" class="w-full h-64 object-cover">
               </div>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
           </div>
-          <div class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-            HOT
-          </div>
+          <!-- Softer purple NEW tag at top right for Product 2 -->
+          <span class="absolute top-2 right-2 bg-purple-500 text-white px-2 py-1 rounded-full text-xs font-semibold z-10">NEW</span>
         </div>
         <div class="p-4">
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Red White Blue Scarf Hoodie</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Red White and Blue Scarf Hoodie</h3>
           <p class="text-gray-600 text-sm mb-3">Street-style design with bold graphics. Perfect for making a statement.</p>
           
           <!-- Size Selection -->
@@ -356,9 +295,9 @@
           </div>
           <button id="add-to-cart-2" class="w-full bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold cursor-not-allowed"
                   data-product-id="2" 
-                  data-product-name="Urban Street T-Shirt" 
+                  data-product-name="Red White and Blue Scarf Hoodie" 
                   data-product-price="69.99" 
-                  data-product-image="images/shirt_2.png"
+                  data-product-image="images/RWB_right.PNG"
                   disabled>
             Select Size
           </button>
@@ -413,7 +352,7 @@
                   data-product-id="3" 
                   data-product-name="Pink Grey White Scarf Hoodie" 
                   data-product-price="69.99" 
-                  data-product-image="images/shirt_3.png"
+                  data-product-image="images/pink.PNG"
                   disabled>
             Select Size
           </button>
@@ -468,7 +407,7 @@
                   data-product-id="4" 
                   data-product-name="Grey Black Scarf Hoodie" 
                   data-product-price="69.99" 
-                  data-product-image="images/shirt_4.png"
+                  data-product-image="images/grey.PNG"
                   disabled>
             Select Size
           </button>
