@@ -38,7 +38,7 @@
     .size-option:hover {
       background-color: #f3f4f6;
     }
-
+    
     /* Button states */
     .add-to-cart-btn:disabled {
       background-color: #9ca3af;
@@ -53,81 +53,81 @@
     .add-to-cart-btn:not(:disabled):hover {
       background-color: #374151;
     }
-
-    /* Reusable nav link styles */
-    .nav-link {
-      @apply px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+    
+    /* Mobile sticky header */
+    @media (max-width: 768px) {
+      header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+      }
+      
+      /* Add padding to body to account for fixed header */
+      body {
+        padding-top: 64px !important; /* 64px = h-16 (header height) */
+      }
+      
+      /* Ensure mobile menu appears below fixed header */
+      #mobile-menu {
+        top: 64px !important;
+      }
     }
     
-    .nav-link-desktop {
-      @apply text-black hover:text-gray-700;
-    }
-    
-    .nav-link-mobile {
-      @apply text-black hover:text-gray-700 block text-base;
-    }
-
-    /* Shopping cart button base styles */
-    .cart-btn {
-      @apply text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200 relative;
-    }
-
-    /* Product card styles */
-    .product-card {
-      @apply bg-white rounded-lg shadow-2xl hover:shadow-2xl overflow-hidden transition-shadow duration-300;
-    }
-
-    .product-tag {
-      @apply absolute top-2 right-2 text-white px-2 py-1 rounded-full text-xs font-semibold z-10;
-    }
-
-    .size-btn {
-      @apply px-3 py-2 border border-gray-300 rounded-md text-sm font-medium cursor-pointer hover:border-gray-400 transition-colors;
-    }
-
-    .add-to-cart-btn {
-      @apply w-full text-white py-2 px-4 rounded-lg transition-colors duration-300 font-semibold;
+    /* Desktop sticky header */
+    @media (min-width: 769px) {
+      header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+      }
+      
+      /* Add padding to body to account for fixed header */
+      body {
+        padding-top: 64px !important; /* 64px = h-16 (header height) */
+      }
+      
+      /* Ensure dropdown menus appear below fixed header */
+      .group:hover .absolute {
+        top: 80px !important;
+      }
     }
   </style>
 </head>
 <body class="m-0 font-sans bg-white text-icon-black max-w-full overflow-x-hidden">
+  <!-- Header Section -->
   <header class="bg-cover bg-center bg-no-repeat shadow-lg relative" style="background-image: url('images/RWB.png');">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
+        <!-- Logo - Centered -->
         <div class="absolute left-1/2 transform -translate-x-1/2">
           <div class="font-playfair text-2xl font-bold text-black">ICON 365</div>
         </div>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:block absolute right-24 top-1/2 transform -translate-y-1/2">
-          <div class="flex items-baseline space-x-4 bg-gray-100 rounded-md shadow px-2 py-1">
-            <a href="#" class="nav-link nav-link-desktop">Home</a>
-            <a href="contact.html" class="nav-link nav-link-desktop">Contact Us</a>
+          <div class="flex items-baseline space-x-4">
+            <a href="#" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Home</a>
+            <a href="contact.html" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Contact Us</a>
           </div>
         </div>
 
         <!-- Shopping Bag Button - Desktop -->
         <div class="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2">
-          <a href="shopping-cart.html" class="cart-btn">
+          <a href="shopping-cart.html" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200 relative">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
             </svg>
-            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold cart-count">0</span>
+            <!-- Shopping cart badge -->
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">0</span>
           </a>
         </div>
 
-        <!-- Mobile menu button -->
-        <div class="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2">
-          <button id="mobile-menu-button" class="cart-btn">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Shopping Bag Button - Mobile -->
-        <div class="md:hidden absolute right-16 top-1/2 transform -translate-y-1/2">
         <!-- Mobile menu button -->
         <div class="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2">
           <button id="mobile-menu-button" class="text-black hover:text-gray-700 focus:outline-none focus:text-gray-700 transition-colors duration-200">
