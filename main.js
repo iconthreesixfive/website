@@ -1,5 +1,12 @@
 // main.js or in your script tag
 document.querySelectorAll('.swiper').forEach(function(swiperEl) {
+  // Skip Product 7 and 8 color variant swipers - they have their own initialization
+  if (swiperEl.classList.contains('product-image-swiper-7-blue') ||
+      swiperEl.classList.contains('product-image-swiper-7-red') ||
+      swiperEl.classList.contains('product-image-swiper-8-blue') ||
+      swiperEl.classList.contains('product-image-swiper-8-red')) {
+    return;
+  }
   new Swiper(swiperEl, {
     loop: true,
     navigation: {
@@ -42,21 +49,6 @@ productSwipers.forEach(swiperEl => {
       1024: {
         slidesPerView: 4,
       },
-    },
-  });
-});
-
-// Initialize Swiper for each product image carousel
-document.querySelectorAll('.product-image-swiper').forEach(function(swiperEl) {
-  new Swiper(swiperEl, {
-    loop: true,
-    navigation: {
-      nextEl: swiperEl.querySelector('.swiper-button-next'),
-      prevEl: swiperEl.querySelector('.swiper-button-prev'),
-    },
-    pagination: {
-      el: swiperEl.querySelector('.swiper-pagination'),
-      clickable: true,
     },
   });
 });
