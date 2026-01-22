@@ -171,18 +171,31 @@
 
   <!-- Image Modal -->
   <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
-    <button id="close-modal" class="absolute top-4 right-4 md:top-6 md:right-6 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-lg transition-all duration-200 z-10">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-    <img id="modal-img" src="" alt="Enlarged product" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl border-4 border-white">
+    <div class="relative max-w-full max-h-[90vh] flex items-center">
+      <!-- Close Button -->
+      <button id="close-modal" class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-gray-600 hover:bg-gray-700 text-white rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center cursor-pointer shadow-2xl transition-all duration-200 z-20 border-3 border-white hover:scale-110">
+        <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <!-- Previous Arrow -->
+      <button id="modal-prev" class="absolute left-2 md:left-4 bg-gray-600 hover:bg-gray-700 text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center cursor-pointer shadow-2xl transition-all duration-200 z-20 hover:scale-110">
+        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <!-- Next Arrow -->
+      <button id="modal-next" class="absolute right-2 md:right-4 bg-gray-600 hover:bg-gray-700 text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center cursor-pointer shadow-2xl transition-all duration-200 z-20 hover:scale-110">
+        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+      <img id="modal-img" src="" alt="Enlarged product" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl border-4 border-white">
+    </div>
   </div>
 
   <!-- Featured Products Section -->
   <section class="px-4 py-12 max-w-7xl mx-auto">
-    <h2 class="text-3xl font-playfair font-bold text-center mb-8 text-gray-800 tracking-wide">NEW DROPS</h2>
-    
     <!-- Product Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Product 7 (first) -->
@@ -221,7 +234,7 @@
                 <img src="images/BW_3.PNG" alt="ICON 365 Blue Reversable Scarf Hoodie" class="w-full h-full object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/BW_4.PNG" alt="ICON 365 Blue Reversable Scarf Hoodie" class="w-full h-full object-cover">
+                <img src="images/BW_4.jpg" alt="ICON 365 Blue Reversable Scarf Hoodie" class="w-full h-full object-cover">
               </div>
             </div>
             <div class="swiper-button-next"></div>
@@ -309,7 +322,7 @@
                 <img src="images/BW_3.PNG" alt="ICON 365 Red Reversable Scarf Hoodie" class="w-full h-full object-cover">
               </div>
               <div class="swiper-slide">
-                <img src="images/BW_4.PNG" alt="ICON 365 Red Reversable Scarf Hoodie" class="w-full h-full object-cover">
+                <img src="images/BW_4.jpg" alt="ICON 365 Red Reversable Scarf Hoodie" class="w-full h-full object-cover">
               </div>
             </div>
             <div class="swiper-button-next"></div>
@@ -320,7 +333,7 @@
             Limited Edition
           </div>
         </div>
-        <!-- Color Variant Thumbnails - Smaller and left aligned -->
+        <!-- Color Variant Thumbnails - Moved to left and smaller -->
         <div class="flex justify-start space-x-2 py-2 px-4 bg-gray-50">
           <button class="color-variant-btn w-6 h-6 rounded-full bg-red-500 border-2 border-gray-300 shadow-md hover:scale-110 transition-transform ring-2 ring-offset-2 ring-red-500" data-product="8" data-color="red" title="Red"></button>
           <button class="color-variant-btn w-6 h-6 rounded-full border-2 border-gray-300 shadow-md hover:scale-110 transition-transform overflow-hidden" data-product="8" data-color="blackwhite" title="Black/White" style="background: linear-gradient(to right, black 50%, white 50%);"></button>
@@ -824,6 +837,13 @@
       // Initialize Product 7 Swipers
       swiperInstances['7-blue'] = new Swiper('.product-image-swiper-7-blue', {
         loop: true,
+        speed: 0,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+        touchRatio: 1,
+        threshold: 10,
         pagination: {
           el: '.product-image-swiper-7-blue .swiper-pagination',
           clickable: true,
@@ -836,6 +856,13 @@
 
       swiperInstances['7-red'] = new Swiper('.product-image-swiper-7-red', {
         loop: true,
+        speed: 0,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+        touchRatio: 1,
+        threshold: 10,
         pagination: {
           el: '.product-image-swiper-7-red .swiper-pagination',
           clickable: true,
@@ -849,6 +876,13 @@
       // Initialize Product 8 Swipers (red and blackwhite)
       swiperInstances['8-red'] = new Swiper('.product-image-swiper-8-red', {
         loop: true,
+        speed: 0,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+        touchRatio: 1,
+        threshold: 10,
         pagination: {
           el: '.product-image-swiper-8-red .swiper-pagination',
           clickable: true,
@@ -861,6 +895,13 @@
 
       swiperInstances['8-blackwhite'] = new Swiper('.product-image-swiper-8-blackwhite', {
         loop: true,
+        speed: 0,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+        touchRatio: 1,
+        threshold: 10,
         pagination: {
           el: '.product-image-swiper-8-blackwhite .swiper-pagination',
           clickable: true,
@@ -874,13 +915,46 @@
       const modal = document.getElementById('image-modal');
       const modalImg = document.getElementById('modal-img');
       const closeModal = document.getElementById('close-modal');
+      const modalPrev = document.getElementById('modal-prev');
+      const modalNext = document.getElementById('modal-next');
+      
+      let currentModalImages = [];
+      let currentModalIndex = 0;
+
+      function updateModalImage() {
+        if (currentModalImages.length > 0) {
+          modalImg.src = currentModalImages[currentModalIndex];
+        }
+      }
+
+      function showModal(imageSrc, allImages) {
+        currentModalImages = allImages;
+        currentModalIndex = allImages.indexOf(imageSrc);
+        if (currentModalIndex === -1) currentModalIndex = 0;
+        updateModalImage();
+        modal.classList.remove('hidden');
+      }
 
       document.querySelectorAll('.swiper-slide img').forEach(img => {
         img.style.cursor = 'zoom-in';
         img.addEventListener('click', function() {
-          modalImg.src = this.src;
-          modal.classList.remove('hidden');
+          // Get all images from the parent swiper
+          const swiperEl = this.closest('.swiper');
+          const allImagesInSwiper = Array.from(swiperEl.querySelectorAll('.swiper-slide img')).map(img => img.src);
+          showModal(this.src, allImagesInSwiper);
         });
+      });
+
+      modalPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+        updateModalImage();
+      });
+
+      modalNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+        updateModalImage();
       });
 
       closeModal.addEventListener('click', () => modal.classList.add('hidden'));
@@ -890,6 +964,15 @@
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') modal.classList.add('hidden');
+        if (modal.classList.contains('hidden')) return;
+        if (e.key === 'ArrowLeft') {
+          currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+          updateModalImage();
+        }
+        if (e.key === 'ArrowRight') {
+          currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+          updateModalImage();
+        }
       });
     });
 
@@ -929,7 +1012,15 @@
         // Slide to the same index in the new swiper
         const newSwiper = swiperInstances[`${productId}-${color}`];
         if (newSwiper) {
-          newSwiper.slideToLoop(currentSlideIndex, 0);
+          // Force update after DOM has rendered the visible swiper
+          setTimeout(() => {
+            newSwiper.update();
+            newSwiper.updateSize();
+            newSwiper.updateSlides();
+            newSwiper.updateProgress();
+            newSwiper.updateSlidesClasses();
+            newSwiper.slideToLoop(currentSlideIndex, 0);
+          }, 10);
         }
         
         // Update ring indicator on buttons
