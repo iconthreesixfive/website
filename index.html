@@ -821,7 +821,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       updateCartBadge();
 
-      // Initialize Product 7 and 8 Swipers and store references
+      // Initialize Product 7 Swipers
       swiperInstances['7-blue'] = new Swiper('.product-image-swiper-7-blue', {
         loop: true,
         pagination: {
@@ -846,18 +846,7 @@
         },
       });
 
-      swiperInstances['8-blue'] = new Swiper('.product-image-swiper-8-blue', {
-        loop: true,
-        pagination: {
-          el: '.product-image-swiper-8-blue .swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.product-image-swiper-8-blue .swiper-button-next',
-          prevEl: '.product-image-swiper-8-blue .swiper-button-prev',
-        },
-      });
-
+      // Initialize Product 8 Swipers (red and blackwhite)
       swiperInstances['8-red'] = new Swiper('.product-image-swiper-8-red', {
         loop: true,
         pagination: {
@@ -870,27 +859,15 @@
         },
       });
 
-      swiperInstances['8-black'] = new Swiper('.product-image-swiper-8-black', {
+      swiperInstances['8-blackwhite'] = new Swiper('.product-image-swiper-8-blackwhite', {
         loop: true,
         pagination: {
-          el: '.product-image-swiper-8-black .swiper-pagination',
+          el: '.product-image-swiper-8-blackwhite .swiper-pagination',
           clickable: true,
         },
         navigation: {
-          nextEl: '.product-image-swiper-8-black .swiper-button-next',
-          prevEl: '.product-image-swiper-8-black .swiper-button-prev',
-        },
-      });
-
-      swiperInstances['8-white'] = new Swiper('.product-image-swiper-8-white', {
-        loop: true,
-        pagination: {
-          el: '.product-image-swiper-8-white .swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.product-image-swiper-8-white .swiper-button-next',
-          prevEl: '.product-image-swiper-8-white .swiper-button-prev',
+          nextEl: '.product-image-swiper-8-blackwhite .swiper-button-next',
+          prevEl: '.product-image-swiper-8-blackwhite .swiper-button-prev',
         },
       });
 
@@ -922,22 +899,28 @@
         const productId = e.target.getAttribute('data-product');
         const color = e.target.getAttribute('data-color');
         
-        // Get current active color
-        const blueVariant = document.getElementById(`product-${productId}-blue`);
-        const redVariant = document.getElementById(`product-${productId}-red`);
-        const blackVariant = document.getElementById(`product-${productId}-black`);
-        const whiteVariant = document.getElementById(`product-${productId}-white`);
-        const currentColor = blueVariant && !blueVariant.classList.contains('hidden') ? 'blue' : redVariant && !redVariant.classList.contains('hidden') ? 'red' : blackVariant && !blackVariant.classList.contains('hidden') ? 'black' : 'white';
+        // Get current active color based on product
+        let currentColor;
+        if (productId === '7') {
+          const blueVariant = document.getElementById('product-7-blue');
+          currentColor = blueVariant && !blueVariant.classList.contains('hidden') ? 'blue' : 'red';
+        } else if (productId === '8') {
+          const redVariant = document.getElementById('product-8-red');
+          currentColor = redVariant && !redVariant.classList.contains('hidden') ? 'red' : 'blackwhite';
+        }
         
         // Get current slide index from the active swiper
         const currentSwiper = swiperInstances[`${productId}-${currentColor}`];
         const currentSlideIndex = currentSwiper ? currentSwiper.realIndex : 0;
         
         // Hide all variants for this product
-        if (blueVariant) blueVariant.classList.add('hidden');
-        if (redVariant) redVariant.classList.add('hidden');
-        if (blackVariant) blackVariant.classList.add('hidden');
-        if (whiteVariant) whiteVariant.classList.add('hidden');
+        if (productId === '7') {
+          document.getElementById('product-7-blue')?.classList.add('hidden');
+          document.getElementById('product-7-red')?.classList.add('hidden');
+        } else if (productId === '8') {
+          document.getElementById('product-8-red')?.classList.add('hidden');
+          document.getElementById('product-8-blackwhite')?.classList.add('hidden');
+        }
         
         // Show selected variant
         const selectedVariant = document.getElementById(`product-${productId}-${color}`);
@@ -946,30 +929,38 @@
         // Slide to the same index in the new swiper
         const newSwiper = swiperInstances[`${productId}-${color}`];
         if (newSwiper) {
-          newSwiper.slideToLoop(currentSlideIndex, 0); // 0 = no animation delay
+          newSwiper.slideToLoop(currentSlideIndex, 0);
         }
         
         // Update ring indicator on buttons
         const buttons = document.querySelectorAll(`.color-variant-btn[data-product="${productId}"]`);
         buttons.forEach(btn => {
-          btn.classList.remove('ring-2', 'ring-offset-2', 'ring-blue-500', 'ring-red-500', 'ring-black', 'ring-white');
+          btn.classList.remove('ring-2', 'ring-offset-2', 'ring-blue-500', 'ring-red-500', 'ring-gray-500');
         });
-        e.target.classList.add('ring-2', 'ring-offset-2', `ring-${color}`);
+        
+        // Apply appropriate ring color
+        if (color === 'blue') {
+          e.target.classList.add('ring-2', 'ring-offset-2', 'ring-blue-500');
+        } else if (color === 'red') {
+          e.target.classList.add('ring-2', 'ring-offset-2', 'ring-red-500');
+        } else {
+          e.target.classList.add('ring-2', 'ring-offset-2', 'ring-gray-500');
+        }
         
         // Update the add to cart button's image
         const addToCartBtn = document.getElementById(`add-to-cart-${productId}`);
         if (addToCartBtn) {
           if (productId === '7') {
             if (color === 'blue') {
-              addToCartBtn.setAttribute('data-product-image', `images/blue_1.jpg`);
+              addToCartBtn.setAttribute('data-product-image', 'images/blue_1.jpg');
             } else {
-              addToCartBtn.setAttribute('data-product-image', `images/BW_1.PNG`);
+              addToCartBtn.setAttribute('data-product-image', 'images/BW_1.PNG');
             }
           } else if (productId === '8') {
             if (color === 'red') {
-              addToCartBtn.setAttribute('data-product-image', `images/red_1.jpg`);
+              addToCartBtn.setAttribute('data-product-image', 'images/red_1.jpg');
             } else {
-              addToCartBtn.setAttribute('data-product-image', `images/BW_1.PNG`);
+              addToCartBtn.setAttribute('data-product-image', 'images/BW_1.PNG');
             }
           }
           addToCartBtn.setAttribute('data-selected-color', color);
@@ -992,7 +983,7 @@
         addToCart(productId, productName, productPrice, productImage, selectedSize.value);
       }
     });
-
+    
     document.addEventListener('change', function(e) {
       // Handle size radio button changes
       if (e.target.classList.contains('size-radio')) {
