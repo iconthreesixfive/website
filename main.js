@@ -9,7 +9,10 @@ document.querySelectorAll('.swiper').forEach(function(swiperEl) {
       swiperEl.classList.contains('product-image-swiper-3-white') ||
       swiperEl.classList.contains('product-image-swiper-3-black') ||
       swiperEl.classList.contains('product-image-swiper-4-grey') ||
+      swiperEl.classList.contains('product-image-swiper-4-white') ||
       swiperEl.classList.contains('product-image-swiper-4-black') ||
+      swiperEl.classList.contains('product-image-swiper-5-grey') ||
+      swiperEl.classList.contains('product-image-swiper-5-black') ||
       swiperEl.classList.contains('product-image-swiper-5-original') ||
       swiperEl.classList.contains('product-image-swiper-5-black') ||
       swiperEl.classList.contains('product-image-swiper-6-original') ||
