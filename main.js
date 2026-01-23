@@ -1,10 +1,19 @@
 // main.js or in your script tag
 document.querySelectorAll('.swiper').forEach(function(swiperEl) {
-  // Skip Product 7 and 8 color variant swipers - they have their own initialization
-  if (swiperEl.classList.contains('product-image-swiper-7-blue') ||
-      swiperEl.classList.contains('product-image-swiper-7-red') ||
-      swiperEl.classList.contains('product-image-swiper-8-blue') ||
-      swiperEl.classList.contains('product-image-swiper-8-red')) {
+  // Skip Product 1, 2, 3, 4, 5, 6 color variant swipers - they have their own initialization in index.html
+  if (swiperEl.classList.contains('product-image-swiper-1-blue') ||
+      swiperEl.classList.contains('product-image-swiper-1-red') ||
+      swiperEl.classList.contains('product-image-swiper-2-red') ||
+      swiperEl.classList.contains('product-image-swiper-2-blackwhite') ||
+      swiperEl.classList.contains('product-image-swiper-3-pink') ||
+      swiperEl.classList.contains('product-image-swiper-3-white') ||
+      swiperEl.classList.contains('product-image-swiper-3-black') ||
+      swiperEl.classList.contains('product-image-swiper-4-grey') ||
+      swiperEl.classList.contains('product-image-swiper-4-black') ||
+      swiperEl.classList.contains('product-image-swiper-5-original') ||
+      swiperEl.classList.contains('product-image-swiper-5-black') ||
+      swiperEl.classList.contains('product-image-swiper-6-original') ||
+      swiperEl.classList.contains('product-image-swiper-6-black')) {
     return;
   }
   new Swiper(swiperEl, {
