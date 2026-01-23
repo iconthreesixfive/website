@@ -1166,12 +1166,21 @@
         const productName = button.getAttribute('data-product-name');
         const productPrice = button.getAttribute('data-product-price');
         const productImage = button.getAttribute('data-product-image');
+        
+        // Check if product has size selection (products 1 and 2)
         const selectedSize = document.querySelector(`input[name="size-${productId}"]:checked`);
-        if (!selectedSize) {
-          alert('Please select a size first!');
-          return;
+        
+        // Products 1 and 2 require size selection
+        if (['1', '2'].includes(productId)) {
+          if (!selectedSize) {
+            alert('Please select a size first!');
+            return;
+          }
+          addToCart(productId, productName, productPrice, productImage, selectedSize.value);
+        } else {
+          // Products 3-6 don't require size, use 'One Size' as default
+          addToCart(productId, productName, productPrice, productImage, 'One Size');
         }
-        addToCart(productId, productName, productPrice, productImage, selectedSize.value);
       }
     });
     
