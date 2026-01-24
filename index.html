@@ -978,8 +978,29 @@
         img.addEventListener('click', function() {
           // Get all images from the parent swiper
           const swiperEl = this.closest('.swiper');
-          const allImagesInSwiper = Array.from(swiperEl.querySelectorAll('.swiper-slide img')).map(img => img.src);
-          showModal(this.src, allImagesInSwiper);
+          const productCard = swiperEl.closest('.bg-white');
+          
+          // Check if this is product 3 - collect images from both variants
+          if (swiperEl.classList.contains('product-image-swiper-3-pink') || 
+              swiperEl.classList.contains('product-image-swiper-3-white')) {
+            const pinkImages = Array.from(productCard.querySelectorAll('#product-3-pink .swiper-slide img')).map(img => img.src);
+            const whiteImages = Array.from(productCard.querySelectorAll('#product-3-white .swiper-slide img')).map(img => img.src);
+            const allImagesInProduct = [...pinkImages, ...whiteImages];
+            showModal(this.src, allImagesInProduct);
+          } 
+          // Check if this is product 4 - collect images from both variants
+          else if (swiperEl.classList.contains('product-image-swiper-4-grey') || 
+                   swiperEl.classList.contains('product-image-swiper-4-white')) {
+            const greyImages = Array.from(productCard.querySelectorAll('#product-4-grey .swiper-slide img')).map(img => img.src);
+            const whiteImages = Array.from(productCard.querySelectorAll('#product-4-white .swiper-slide img')).map(img => img.src);
+            const allImagesInProduct = [...greyImages, ...whiteImages];
+            showModal(this.src, allImagesInProduct);
+          }
+          else {
+            // For other products, get images from current swiper only
+            const allImagesInSwiper = Array.from(swiperEl.querySelectorAll('.swiper-slide img')).map(img => img.src);
+            showModal(this.src, allImagesInSwiper);
+          }
         });
       });
 
